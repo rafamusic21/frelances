@@ -18,7 +18,7 @@
     
     .cow{
     position:absolute;
-    font-size:50px;
+    font-size:51px;
     animation:float 6s ease-in-out infinite;
     opacity:.6;
     }
