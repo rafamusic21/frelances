@@ -34,3 +34,28 @@ index = total - 1;
 update();
 
 }
+
+function generarVacas(){
+
+    const totalVacas = 4;
+    
+    for(let i=0;i<totalVacas;i++){
+    
+    const vaca = document.createElement("div");
+    
+    vaca.classList.add("cow");
+    
+    vaca.innerHTML = "🐮";
+    
+    vaca.style.left = Math.random()*90 + "%";
+    vaca.style.top = Math.random()*90 + "%";
+    
+    vaca.style.animationDelay = Math.random()*5 + "s";
+    
+    document.body.appendChild(vaca);
+    
+    }
+    
+    }
+    
+    generarVacas();

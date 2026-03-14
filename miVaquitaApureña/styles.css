@@ -48,15 +48,30 @@
     /* VACAS FLOTANTES */
     
     .cow{
-    position:absolute;
-    font-size:50px;
-    animation:float 6s ease-in-out infinite;
-    opacity:.6;
-    }
-    
-    .cow1{top:10%;left:5%;}
-    .cow2{top:70%;right:8%;animation-delay:2s;}
-    .cow3{bottom:15%;left:10%;animation-delay:3s;}
+
+        position:fixed;
+        
+        font-size:50px;
+        
+        opacity:.35;
+        
+        pointer-events:none; /* evita que interfieran con clicks */
+        
+        user-select:none; /* no se pueden seleccionar */
+        
+        z-index:0;
+        
+        animation:float 6s ease-in-out infinite;
+        
+        }
+        
+        @keyframes float{
+        
+        0%{transform:translateY(0px)}
+        50%{transform:translateY(-15px)}
+        100%{transform:translateY(0px)}
+        
+        }
     
     @keyframes float{
     
