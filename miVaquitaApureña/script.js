@@ -3,7 +3,7 @@ let index = 0;
 function update(){
 
 const track = document.getElementById("track");
-track.style.transform = `translateX(-${index*99}%)`;
+track.style.transform = `translateX(-${index*100}%)`;
 
 }
 
