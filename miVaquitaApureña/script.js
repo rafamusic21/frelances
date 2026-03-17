@@ -1,32 +1,21 @@
-const cowSVG = `
-<svg viewBox="0 0 120 120">
-<ellipse cx="60" cy="70" rx="40" ry="30" fill="#fff"/>
-<circle cx="40" cy="60" r="10" fill="#333"/>
-<circle cx="75" cy="75" r="8" fill="#333"/>
-<circle cx="50" cy="60" r="4" fill="#fff"/>
-<circle cx="75" cy="75" r="3" fill="#fff"/>
-<ellipse cx="60" cy="50" rx="20" ry="18" fill="#fff"/>
-<circle cx="52" cy="48" r="3"/>
-<circle cx="68" cy="48" r="3"/>
-<ellipse cx="60" cy="56" rx="6" ry="4" fill="#ffb6c1"/>
-</svg>
-`;
-
 const layer = document.getElementById("cow-layer");
 
+/* posición aleatoria */
 function randomPos(){
 return {
 x: Math.random()*90,
-y: Math.random()*85
+y: Math.random()*90
 };
 }
 
+/* mover vaca */
 function moveCow(cow){
 const p = randomPos();
-cow.style.left = p.x+"%";
-cow.style.top = p.y+"%";
+cow.style.left = p.x + "%";
+cow.style.top = p.y + "%";
 }
 
+/* fuegos artificiales */
 function fireworks(x,y){
 
 for(let i=0;i<8;i++){
@@ -41,7 +30,7 @@ spark.style.height="6px";
 spark.style.background="#3a7bfd";
 spark.style.borderRadius="50%";
 spark.style.pointerEvents="none";
-spark.style.zIndex="999";
+spark.style.zIndex="10001";
 
 const angle = Math.random()*360;
 const distance = 40+Math.random()*20;
@@ -62,28 +51,36 @@ setTimeout(()=>spark.remove(),600);
 
 }
 
+/* crear vacas */
 function createCows(){
 
-for(let i=0;i<3;i++){
+const total = 3;
+
+for(let i=0;i<total;i++){
 
 const cow = document.createElement("div");
 
 cow.className="cow";
-
-cow.innerHTML=cowSVG;
+cow.innerHTML="🐮";
 
 moveCow(cow);
 
+/* movimiento automático */
+setInterval(()=>{
+moveCow(cow);
+},8000);
+
+/* click */
 cow.addEventListener("click",()=>{
 
-const rect=cow.getBoundingClientRect();
+const rect = cow.getBoundingClientRect();
 
 fireworks(
-rect.left+rect.width/2,
-rect.top+rect.height/2
+rect.left + rect.width/2,
+rect.top + rect.height/2
 );
 
-cow.style.transform="scale(1.2)";
+cow.style.transform="scale(1.3)";
 
 setTimeout(()=>{
 moveCow(cow);
@@ -93,8 +90,6 @@ cow.style.transform="scale(1)";
 });
 
 layer.appendChild(cow);
-
-setInterval(()=>moveCow(cow),10000);
 
 }
 
