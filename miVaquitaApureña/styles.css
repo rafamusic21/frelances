@@ -50,17 +50,17 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 10;   /* por encima del contenedor */
   }
   
   .cow {
     position: absolute;
     font-size: 48px;
-    opacity: 0.45;
+    opacity: 0.35;          /* un poco más transparente para no tapar botones */
     user-select: none;
     cursor: pointer;
     pointer-events: auto;
-    z-index: 1;
+    z-index: 10;
     transition: left 7s cubic-bezier(.45,.05,.55,.95),
                 top  7s cubic-bezier(.45,.05,.55,.95),
                 transform .3s;
@@ -82,7 +82,7 @@
     padding: 30px 24px 24px;
     text-align: center;
     position: relative;
-    z-index: 2;
+    z-index: 1;
   }
   
   /* LOGO */
