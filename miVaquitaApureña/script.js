@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* =============================================
    MI VAQUITA APUREÑA — script.js
    ============================================= */
@@ -38,7 +39,39 @@ function fireworks(x, y) {
   }
 }
 
-function createCows() {
+/* portal visual ring */
+function spawnPortalRing(x, y, direction) {
+  const ring = document.createElement("div");
+  const size = 80;
+  ring.style.cssText = `
+    position: fixed;
+    left: ${x - size/2}px;
+    top:  ${y - size/2}px;
+    width: ${size}px;
+    height: ${size}px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    background: transparent;
+    pointer-events: none;
+    z-index: 10002;
+    box-shadow: 0 0 18px 6px ${direction === "out" ? "#a78bfa" : "#34d399"},
+                inset 0 0 12px 4px ${direction === "out" ? "#7c3aed" : "#10b981"};
+  `;
+
+  const startScale = direction === "out" ? 0.2 : 1.4;
+  const endScale   = direction === "out" ? 1.4 : 0.2;
+
+  ring.animate([
+    { transform: `scale(${startScale})`, opacity: direction === "out" ? 0 : 1 },
+    { transform: "scale(1)",             opacity: 1,   offset: 0.4 },
+    { transform: `scale(${endScale})`,   opacity: 0 }
+  ], { duration: 600, easing: "ease-out" });
+
+  document.body.appendChild(ring);
+  setTimeout(() => ring.remove(), 620);
+}
+
+
   for (let i = 0; i < 4; i++) {
     const cow = document.createElement("div");
     cow.className = "cow";
@@ -46,14 +79,49 @@ function createCows() {
     moveCow(cow);
     setInterval(() => moveCow(cow), 7000 + i * 800);
     cow.addEventListener("click", () => {
+      if (cow.dataset.teleporting) return; // evitar doble click
+      cow.dataset.teleporting = "1";
+
       const r = cow.getBoundingClientRect();
-      fireworks(r.left + r.width / 2, r.top + r.height / 2);
-      cow.style.transform = "scale(1.4) rotate(10deg)";
-      setTimeout(() => { moveCow(cow); cow.style.transform = ""; }, 350);
+      const cx = r.left + r.width / 2;
+      const cy = r.top  + r.height / 2;
+
+      fireworks(cx, cy);
+      spawnPortalRing(cx, cy, "out");
+
+      /* animación salida */
+      cow.style.animation = "none";
+      cow.style.transition = "none";
+      cow.style.animationName = "portalOut";
+      cow.style.animationDuration = "500ms";
+      cow.style.animationFillMode = "forwards";
+      cow.style.animationTimingFunction = "ease-in";
+
+      setTimeout(() => {
+        /* mover a nueva posición (invisible aún) */
+        moveCow(cow);
+
+        /* pequeña pausa antes de aparecer */
+        setTimeout(() => {
+          const r2 = cow.getBoundingClientRect();
+          spawnPortalRing(r2.left + r2.width/2, r2.top + r2.height/2, "in");
+
+          cow.style.animationName = "portalIn";
+          cow.style.animationDuration = "600ms";
+          cow.style.animationFillMode = "none";
+          cow.style.animationTimingFunction = "cubic-bezier(.34,1.56,.64,1)";
+
+          setTimeout(() => {
+            cow.style.animation = "";
+            cow.style.transition = "";
+            delete cow.dataset.teleporting;
+          }, 650);
+        }, 80);
+      }, 480);
     });
     cowLayer.appendChild(cow);
   }
-}
+
 
 document.addEventListener("DOMContentLoaded", createCows);
 
