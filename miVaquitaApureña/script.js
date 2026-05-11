@@ -1,98 +1,261 @@
-const layer = document.getElementById("cow-layer");
+/* =============================================
+   MI VAQUITA APUREÑA — script.js
+   ============================================= */
 
-/* posición aleatoria */
-function randomPos(){
-return {
-x: Math.random()*90,
-y: Math.random()*90
-};
+/* ---------- VACAS FLOTANTES ---------- */
+
+const cowLayer = document.getElementById("cow-layer");
+
+function randomPos() {
+  return { x: Math.random() * 88, y: Math.random() * 88 };
 }
 
-/* mover vaca */
-function moveCow(cow){
-const p = randomPos();
-cow.style.left = p.x + "%";
-cow.style.top = p.y + "%";
+function moveCow(cow) {
+  const p = randomPos();
+  cow.style.left = p.x + "%";
+  cow.style.top  = p.y + "%";
 }
 
-/* fuegos artificiales */
-function fireworks(x,y){
+function fireworks(x, y) {
+  const colors = ["#3b82f6","#f59e0b","#16a34a","#ec4899","#8b5cf6"];
+  for (let i = 0; i < 10; i++) {
+    const spark = document.createElement("div");
+    spark.style.cssText = `
+      position:fixed; left:${x}px; top:${y}px;
+      width:7px; height:7px;
+      background:${colors[i % colors.length]};
+      border-radius:50%;
+      pointer-events:none; z-index:10001;
+    `;
+    const angle    = (i / 10) * Math.PI * 2;
+    const distance = 45 + Math.random() * 25;
+    spark.animate([
+      { transform: "translate(0,0)", opacity: 1 },
+      { transform: `translate(${Math.cos(angle)*distance}px,${Math.sin(angle)*distance}px)`, opacity: 0 }
+    ], { duration: 700, easing: "ease-out" });
+    document.body.appendChild(spark);
+    setTimeout(() => spark.remove(), 700);
+  }
+}
 
-for(let i=0;i<8;i++){
+function createCows() {
+  for (let i = 0; i < 4; i++) {
+    const cow = document.createElement("div");
+    cow.className = "cow";
+    cow.innerHTML = "🐮";
+    moveCow(cow);
+    setInterval(() => moveCow(cow), 7000 + i * 800);
+    cow.addEventListener("click", () => {
+      const r = cow.getBoundingClientRect();
+      fireworks(r.left + r.width / 2, r.top + r.height / 2);
+      cow.style.transform = "scale(1.4) rotate(10deg)";
+      setTimeout(() => { moveCow(cow); cow.style.transform = ""; }, 350);
+    });
+    cowLayer.appendChild(cow);
+  }
+}
 
-const spark = document.createElement("div");
+document.addEventListener("DOMContentLoaded", createCows);
 
-spark.style.position="fixed";
-spark.style.left=x+"px";
-spark.style.top=y+"px";
-spark.style.width="6px";
-spark.style.height="6px";
-spark.style.background="#3a7bfd";
-spark.style.borderRadius="50%";
-spark.style.pointerEvents="none";
-spark.style.zIndex="10001";
+/* ---------- CARRUSEL ---------- */
 
-const angle = Math.random()*360;
-const distance = 40+Math.random()*20;
+let currentSlide = 0;
+const track = document.getElementById("track");
 
-spark.animate([
-{transform:"translate(0,0)",opacity:1},
-{transform:`translate(${Math.cos(angle)*distance}px,${Math.sin(angle)*distance}px)`,opacity:0}
-],{
-duration:600,
-easing:"ease-out"
+function getSlides() {
+  return track ? track.querySelectorAll(".product") : [];
+}
+
+function updateCarousel() {
+  const slides = getSlides();
+  if (!track || !slides.length) return;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  document.querySelectorAll(".dot").forEach((d, i) =>
+    d.classList.toggle("active", i === currentSlide)
+  );
+}
+
+function next() {
+  const slides = getSlides();
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateCarousel();
+}
+
+function prev() {
+  const slides = getSlides();
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  updateCarousel();
+}
+
+function buildDots() {
+  const dotsEl = document.getElementById("dots");
+  if (!dotsEl) return;
+  const slides = getSlides();
+  dotsEl.innerHTML = "";
+  slides.forEach((_, i) => {
+    const d = document.createElement("div");
+    d.className = "dot" + (i === 0 ? " active" : "");
+    d.onclick = () => { currentSlide = i; updateCarousel(); };
+    dotsEl.appendChild(d);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  buildDots();
+  updateCarousel();
+  /* Auto-avance carrusel */
+  setInterval(next, 4500);
 });
 
-document.body.appendChild(spark);
+/* ---------- TIENDA / MODAL ---------- */
 
-setTimeout(()=>spark.remove(),600);
+const WHATSAPP_NUMBER = "584247491899"; // número destino
 
+const PRODUCTS = [
+  {
+    id: 1,
+    name: "Queso Llanero",
+    desc: "Firme, salado y artesanal — el clásico del llano",
+    price: 5.00,
+    unit: "kg",
+    emoji: "🧀",
+    img: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=120"
+  },
+  {
+    id: 2,
+    name: "Queso de Mano",
+    desc: "Suave, fresco y derretido perfecto",
+    price: 6.50,
+    unit: "kg",
+    emoji: "🫙",
+    img: "https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=120"
+  },
+  {
+    id: 3,
+    name: "Queso Guayanés",
+    desc: "Cremoso, ideal para tequeños y repostería",
+    price: 7.00,
+    unit: "kg",
+    emoji: "🥛",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=120"
+  },
+  {
+    id: 4,
+    name: "Mantequilla de Leche",
+    desc: "100% natural, directa del llano venezolano",
+    price: 4.50,
+    unit: "500g",
+    emoji: "🧈",
+    img: null
+  }
+];
+
+/* Estado de cantidades */
+const quantities = {};
+PRODUCTS.forEach(p => { quantities[p.id] = 0; });
+
+/* Renderizar productos en el modal */
+function buildShopProducts() {
+  const container = document.getElementById("shopProducts");
+  if (!container) return;
+  container.innerHTML = "";
+
+  PRODUCTS.forEach(p => {
+    const item = document.createElement("div");
+    item.className = "shop-item";
+    item.id = `shop-item-${p.id}`;
+
+    const imgHtml = p.img
+      ? `<img class="shop-item-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        + `<div class="shop-item-emoji" style="display:none">${p.emoji}</div>`
+      : `<div class="shop-item-emoji">${p.emoji}</div>`;
+
+    item.innerHTML = `
+      ${imgHtml}
+      <div class="shop-item-info">
+        <div class="shop-item-name">${p.name}</div>
+        <div class="shop-item-desc">${p.desc}</div>
+        <div class="shop-item-price">$${p.price.toFixed(2)} / ${p.unit}</div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn minus" onclick="changeQty(${p.id}, -1)">−</button>
+        <span class="qty-num" id="qty-${p.id}">0</span>
+        <button class="qty-btn plus" onclick="changeQty(${p.id}, 1)">+</button>
+      </div>
+    `;
+    container.appendChild(item);
+  });
 }
 
+/* Cambiar cantidad */
+function changeQty(id, delta) {
+  quantities[id] = Math.max(0, quantities[id] + delta);
+
+  const numEl  = document.getElementById(`qty-${id}`);
+  const itemEl = document.getElementById(`shop-item-${id}`);
+  if (numEl)  numEl.textContent = quantities[id];
+  if (itemEl) itemEl.classList.toggle("has-qty", quantities[id] > 0);
+
+  updateSummary();
 }
 
-/* crear vacas */
-function createCows(){
+/* Actualizar resumen y botón */
+function updateSummary() {
+  let total = 0;
+  PRODUCTS.forEach(p => { total += quantities[p.id] * p.price; });
 
-const total = 3;
+  const totalEl  = document.getElementById("totalPrice");
+  const sendBtn  = document.getElementById("sendBtn");
+  if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
 
-for(let i=0;i<total;i++){
+  const hasItems = PRODUCTS.some(p => quantities[p.id] > 0);
+  if (sendBtn) sendBtn.disabled = !hasItems;
+}
 
-const cow = document.createElement("div");
+/* Construir y enviar mensaje a WhatsApp */
+function sendOrder() {
+  const lines = ["🧀 *Pedido - Mi Vaquita Apureña*\n"];
 
-cow.className="cow";
-cow.innerHTML="🐮";
+  let total = 0;
+  PRODUCTS.forEach(p => {
+    if (quantities[p.id] > 0) {
+      const subtotal = quantities[p.id] * p.price;
+      total += subtotal;
+      lines.push(`• ${p.name} × ${quantities[p.id]} ${p.unit}  →  $${subtotal.toFixed(2)}`);
+    }
+  });
 
-moveCow(cow);
+  lines.push(`\n💰 *Total estimado: $${total.toFixed(2)}*`);
+  lines.push("\nHola, me gustaría hacer este pedido. ¿Pueden confirmar disponibilidad? 🙏");
 
-/* movimiento automático */
-setInterval(()=>{
-moveCow(cow);
-},8000);
+  const msg = encodeURIComponent(lines.join("\n"));
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+}
 
-/* click */
-cow.addEventListener("click",()=>{
+/* Abrir / cerrar modal */
+function openShop() {
+  buildShopProducts();
+  updateSummary();
+  const overlay = document.getElementById("shopOverlay");
+  if (overlay) {
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+}
 
-const rect = cow.getBoundingClientRect();
+function closeShop() {
+  const overlay = document.getElementById("shopOverlay");
+  if (overlay) {
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+}
 
-fireworks(
-rect.left + rect.width/2,
-rect.top + rect.height/2
-);
+function closeShopOutside(e) {
+  if (e.target.id === "shopOverlay") closeShop();
+}
 
-cow.style.transform="scale(1.3)";
-
-setTimeout(()=>{
-moveCow(cow);
-cow.style.transform="scale(1)";
-},300);
-
+/* Cerrar con Escape */
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeShop();
 });
-
-layer.appendChild(cow);
-
-}
-
-}
-
-document.addEventListener("DOMContentLoaded",createCows);
