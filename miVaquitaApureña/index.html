@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
- 
+
 <!-- Capa de vacas animadas -->
 <div id="cow-layer"></div>
- 
+
 <!-- Contenedor principal -->
 <div class="container">
- 
+
   <!-- Logo -->
   <div class="logo-wrap">
     <div class="logo">
@@ -23,10 +23,10 @@
     </div>
     <div class="logo-badge">🧀</div>
   </div>
- 
+
   <h1>Mi Vaquita Apureña</h1>
   <p class="subtitle">Quesos artesanales del llano venezolano</p>
- 
+
   <!-- Redes sociales -->
   <div class="socials">
     <a href="tel:+584125478673" title="Llamar">
@@ -42,52 +42,52 @@
       <i class="fa-brands fa-facebook-f"></i>
     </a>
   </div>
- 
+
   <!-- Botones de acción -->
   <a class="link-btn btn-whatsapp" href="https://wa.me/584247491899" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
     Pedir por WhatsApp
   </a>
- 
+
   <a class="link-btn btn-location" href="https://maps.google.com" target="_blank">
     <i class="fa-solid fa-location-dot"></i>
     Ubicación
   </a>
- 
+
   <button class="link-btn btn-store" onclick="openShop()">
     <i class="fa-solid fa-store"></i>
     Comprar
   </button>
- 
+
   <a class="link-btn btn-instagram" href="https://www.instagram.com/mivaquitaapurena2021" target="_blank">
     <i class="fa-brands fa-instagram"></i>
     Instagram
   </a>
- 
+
   <!-- Catálogo carrusel -->
   <div class="catalog">
     <h2><i class="fa-solid fa-cheese"></i> Catálogo</h2>
     <div class="carousel">
       <div class="carousel-track" id="track">
- 
+
         <div class="product">
           <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400" alt="Queso Llanero">
           <h3>Queso Llanero</h3>
           <p>Tradicional y fresco del llano</p>
         </div>
- 
+
         <div class="product">
           <img src="https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=400" alt="Queso de Mano">
           <h3>Queso de Mano</h3>
           <p>Suave y delicioso</p>
         </div>
- 
+
         <div class="product">
           <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400" alt="Queso Guayanés">
           <h3>Queso Guayanés</h3>
           <p>Cremoso y perfecto</p>
         </div>
- 
+
       </div>
     </div>
     <div class="carousel-buttons">
@@ -96,34 +96,34 @@
       <button onclick="next()"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
   </div>
- 
+
   <!-- Guardar contacto -->
-  <a class="save" href="#">
+  <a class="save" href="#" onclick="saveContact(event)">
     <i class="fa-solid fa-address-card"></i>
     Guardar contacto
   </a>
- 
+
   <footer>Mi Vaquita Apureña © 2025 — Apure, Venezuela 🇻🇪</footer>
- 
+
 </div>
- 
+
 <!-- ===== MODAL TIENDA ===== -->
 <div class="shop-overlay" id="shopOverlay" onclick="closeShopOutside(event)">
   <div class="shop-modal" id="shopModal">
- 
+
     <div class="shop-header">
       <h2><i class="fa-solid fa-basket-shopping"></i> Hacer Pedido</h2>
       <button class="shop-close" onclick="closeShop()">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
- 
+
     <p class="shop-subtitle">Selecciona tus productos y te enviaremos el pedido por WhatsApp 🧀</p>
- 
+
     <div class="shop-products" id="shopProducts">
       <!-- Generado por JS -->
     </div>
- 
+
     <!-- Resumen -->
     <div class="shop-summary" id="shopSummary">
       <div class="summary-row">
@@ -131,15 +131,15 @@
         <span id="totalPrice">$0.00</span>
       </div>
     </div>
- 
+
     <button class="send-order" id="sendBtn" onclick="sendOrder()" disabled>
       <i class="fa-brands fa-whatsapp"></i>
       Enviar pedido por WhatsApp
     </button>
- 
+
   </div>
 </div>
- 
+
 <script src="script.js"></script>
 </body>
 </html>
