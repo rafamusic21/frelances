@@ -72,7 +72,8 @@ function spawnPortalRing(x, y, direction) {
 }
 
 
-  for (let i = 0; i < 4; i++) {
+function createCows() {
+  for (let i = 0; i < 2; i++) {
     const cow = document.createElement("div");
     cow.className = "cow";
     cow.innerHTML = "🐮";
@@ -121,7 +122,7 @@ function spawnPortalRing(x, y, direction) {
     });
     cowLayer.appendChild(cow);
   }
-
+}
 
 document.addEventListener("DOMContentLoaded", createCows);
 
