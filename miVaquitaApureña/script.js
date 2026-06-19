@@ -39,7 +39,6 @@ function fireworks(x, y) {
   }
 }
 
-/* portal visual ring */
 function spawnPortalRing(x, y, direction) {
   const ring = document.createElement("div");
   const size = 80;
@@ -57,20 +56,16 @@ function spawnPortalRing(x, y, direction) {
     box-shadow: 0 0 18px 6px ${direction === "out" ? "#a78bfa" : "#34d399"},
                 inset 0 0 12px 4px ${direction === "out" ? "#7c3aed" : "#10b981"};
   `;
-
   const startScale = direction === "out" ? 0.2 : 1.4;
   const endScale   = direction === "out" ? 1.4 : 0.2;
-
   ring.animate([
     { transform: `scale(${startScale})`, opacity: direction === "out" ? 0 : 1 },
     { transform: "scale(1)",             opacity: 1,   offset: 0.4 },
     { transform: `scale(${endScale})`,   opacity: 0 }
   ], { duration: 600, easing: "ease-out" });
-
   document.body.appendChild(ring);
   setTimeout(() => ring.remove(), 620);
 }
-
 
 function createCows() {
   for (let i = 0; i < 2; i++) {
@@ -80,38 +75,28 @@ function createCows() {
     moveCow(cow);
     setInterval(() => moveCow(cow), 7000 + i * 800);
     cow.addEventListener("click", () => {
-      if (cow.dataset.teleporting) return; // evitar doble click
+      if (cow.dataset.teleporting) return;
       cow.dataset.teleporting = "1";
-
       const r = cow.getBoundingClientRect();
       const cx = r.left + r.width / 2;
       const cy = r.top  + r.height / 2;
-
       fireworks(cx, cy);
       spawnPortalRing(cx, cy, "out");
-
-      /* animación salida */
       cow.style.animation = "none";
       cow.style.transition = "none";
       cow.style.animationName = "portalOut";
       cow.style.animationDuration = "500ms";
       cow.style.animationFillMode = "forwards";
       cow.style.animationTimingFunction = "ease-in";
-
       setTimeout(() => {
-        /* mover a nueva posición (invisible aún) */
         moveCow(cow);
-
-        /* pequeña pausa antes de aparecer */
         setTimeout(() => {
           const r2 = cow.getBoundingClientRect();
           spawnPortalRing(r2.left + r2.width/2, r2.top + r2.height/2, "in");
-
           cow.style.animationName = "portalIn";
           cow.style.animationDuration = "600ms";
           cow.style.animationFillMode = "none";
           cow.style.animationTimingFunction = "cubic-bezier(.34,1.56,.64,1)";
-
           setTimeout(() => {
             cow.style.animation = "";
             cow.style.transition = "";
@@ -172,79 +157,42 @@ function buildDots() {
 document.addEventListener("DOMContentLoaded", () => {
   buildDots();
   updateCarousel();
-  /* Auto-avance carrusel */
   setInterval(next, 4500);
 });
 
 /* ---------- TIENDA / MODAL ---------- */
 
-const WHATSAPP_NUMBER = "584247491899"; // número destino
+const WHATSAPP_NUMBER = "584125478673";
 
 const PRODUCTS = [
-  {
-    id: 1,
-    name: "Queso Llanero",
-    desc: "Firme, salado y artesanal — el clásico del llano",
-    price: 5.00,
-    unit: "kg",
-    emoji: "🧀",
-    img: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=120"
-  },
-  {
-    id: 2,
-    name: "Queso de Mano",
-    desc: "Suave, fresco y derretido perfecto",
-    price: 6.50,
-    unit: "kg",
-    emoji: "🫙",
-    img: "https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=120"
-  },
-  {
-    id: 3,
-    name: "Queso Guayanés",
-    desc: "Cremoso, ideal para tequeños y repostería",
-    price: 7.00,
-    unit: "kg",
-    emoji: "🥛",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=120"
-  },
-  {
-    id: 4,
-    name: "Mantequilla de Leche",
-    desc: "100% natural, directa del llano venezolano",
-    price: 4.50,
-    unit: "500g",
-    emoji: "🧈",
-    img: null
-  }
+  { id: 1, name: "Queso Mozzarela",     desc: "Suave, elástico y perfecto para fundir",     emoji: "🧀", img: "images/queso-mozzarela.png" },
+  { id: 2, name: "Queso Cheddar",       desc: "Intenso, cremoso y lleno de sabor",           emoji: "🧀", img: "images/quese-cheddar.png" },
+  { id: 3, name: "Facilitas Mozzarela", desc: "Práctica y deliciosa en cada porción",        emoji: "🫙", img: "images/facil-mozzarella.png" },
+  { id: 4, name: "Facilitas Cheddar",   desc: "El sabor cheddar en formato fácil",           emoji: "🫙", img: "images/cheddar.png" },
+  { id: 5, name: "GR Yogurt de Fresa",  desc: "Fresco, natural y con sabor a fresa",         emoji: "🍓", img: "images/fresa.png" },
+  { id: 6, name: "GR Yogurt de Durazno",desc: "Cremoso y aromático con durazno natural",     emoji: "🍑", img: "images/durazno.png" }
 ];
 
-/* Estado de cantidades */
 const quantities = {};
 PRODUCTS.forEach(p => { quantities[p.id] = 0; });
 
-/* Renderizar productos en el modal */
 function buildShopProducts() {
   const container = document.getElementById("shopProducts");
   if (!container) return;
   container.innerHTML = "";
-
   PRODUCTS.forEach(p => {
     const item = document.createElement("div");
     item.className = "shop-item";
     item.id = `shop-item-${p.id}`;
-
     const imgHtml = p.img
       ? `<img class="shop-item-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
         + `<div class="shop-item-emoji" style="display:none">${p.emoji}</div>`
       : `<div class="shop-item-emoji">${p.emoji}</div>`;
-
     item.innerHTML = `
       ${imgHtml}
       <div class="shop-item-info">
         <div class="shop-item-name">${p.name}</div>
         <div class="shop-item-desc">${p.desc}</div>
-        <div class="shop-item-price">$${p.price.toFixed(2)} / ${p.unit}</div>
       </div>
       <div class="qty-control">
         <button class="qty-btn minus" onclick="changeQty(${p.id}, -1)">−</button>
@@ -256,52 +204,34 @@ function buildShopProducts() {
   });
 }
 
-/* Cambiar cantidad */
 function changeQty(id, delta) {
   quantities[id] = Math.max(0, quantities[id] + delta);
-
   const numEl  = document.getElementById(`qty-${id}`);
   const itemEl = document.getElementById(`shop-item-${id}`);
   if (numEl)  numEl.textContent = quantities[id];
   if (itemEl) itemEl.classList.toggle("has-qty", quantities[id] > 0);
-
   updateSummary();
 }
 
-/* Actualizar resumen y botón */
 function updateSummary() {
-  let total = 0;
-  PRODUCTS.forEach(p => { total += quantities[p.id] * p.price; });
-
-  const totalEl  = document.getElementById("totalPrice");
-  const sendBtn  = document.getElementById("sendBtn");
-  if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
-
+  const sendBtn = document.getElementById("sendBtn");
   const hasItems = PRODUCTS.some(p => quantities[p.id] > 0);
   if (sendBtn) sendBtn.disabled = !hasItems;
 }
 
-/* Construir y enviar mensaje a WhatsApp */
 function sendOrder() {
-  const lines = ["🧀 *Pedido - Mi Vaquita Apureña*\n"];
-
-  let total = 0;
+  const lines = ["*Consulta de productos - Mi Vaquita Apurena*\n"];
+  lines.push("Hola, me interesan los siguientes productos:\n");
   PRODUCTS.forEach(p => {
     if (quantities[p.id] > 0) {
-      const subtotal = quantities[p.id] * p.price;
-      total += subtotal;
-      lines.push(`• ${p.name} × ${quantities[p.id]} ${p.unit}  →  $${subtotal.toFixed(2)}`);
+      lines.push(`- ${p.name} x ${quantities[p.id]}`);
     }
   });
-
-  lines.push(`\n💰 *Total estimado: $${total.toFixed(2)}*`);
-  lines.push("\nHola, me gustaría hacer este pedido. ¿Pueden confirmar disponibilidad? 🙏");
-
-  const msg = encodeURIComponent(lines.join("\n"));
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+  lines.push("\nPodrian indicarme disponibilidad y precios?");
+  const msg = lines.join("\n");
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
-/* Abrir / cerrar modal */
 function openShop() {
   buildShopProducts();
   updateSummary();
@@ -324,12 +254,55 @@ function closeShopOutside(e) {
   if (e.target.id === "shopOverlay") closeShop();
 }
 
+/* ---------- LIGHTBOX ---------- */
+
+function openLightbox(src, name, desc, emoji) {
+  const overlay = document.getElementById("lightboxOverlay");
+  const img     = document.getElementById("lbImg");
+  const emojiEl = document.getElementById("lbEmoji");
+
+  document.getElementById("lbName").textContent = name;
+  document.getElementById("lbDesc").textContent = desc;
+
+  // Resetear animación cada vez que se abre
+  const wrap = overlay.querySelector(".lightbox-img-wrap");
+  wrap.style.animation = "none";
+  wrap.offsetHeight; // reflow para reiniciar
+  wrap.style.animation = "";
+
+  if (src) {
+    img.src = src;
+    img.alt = name;
+    img.style.display = "block";
+    emojiEl.style.display = "none";
+    img.onerror = () => {
+      img.style.display = "none";
+      emojiEl.textContent = emoji;
+      emojiEl.style.display = "block";
+    };
+  } else {
+    img.style.display = "none";
+    emojiEl.textContent = emoji;
+    emojiEl.style.display = "block";
+  }
+
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  document.getElementById("lightboxOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function closeLightboxOutside(e) {
+  if (e.target.id === "lightboxOverlay") closeLightbox();
+}
 
 /* ---------- GUARDAR CONTACTO ---------- */
 
 function saveContact(e) {
   e.preventDefault();
-
   const vcard = [
     "BEGIN:VCARD",
     "VERSION:3.0",
@@ -337,14 +310,11 @@ function saveContact(e) {
     "ORG:Mi Vaquita Apurena",
     "TITLE:Quesos artesanales del llano",
     "TEL;TYPE=CELL,VOICE:+584125478673",
-    "TEL;TYPE=CELL,VOICE:+584247491899",
     "URL:https://www.instagram.com/mivaquitaapurena2021",
     "NOTE:Quesos artesanales del llano venezolano",
     "END:VCARD"
   ].join("\r\n");
-
   const encoded = "data:text/vcard;charset=utf-8," + encodeURIComponent(vcard);
-
   const a = document.createElement("a");
   a.href = encoded;
   a.download = "MiVaquitaApurena.vcf";
@@ -355,5 +325,8 @@ function saveContact(e) {
 
 /* Cerrar con Escape */
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeShop();
+  if (e.key === "Escape") {
+    closeShop();
+    closeLightbox();
+  }
 });
