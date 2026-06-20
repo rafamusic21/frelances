@@ -165,7 +165,7 @@ function closeGrid() {
 }
 
 /* ---------- TIENDA / MODAL ---------- */
-const WHATSAPP_NUMBER = "58XXXXXXXXXX";
+const WHATSAPP_NUMBER = "584247491899";
 
 const PRODUCTS = [
   { id:1,  name:"Queso Mozzarela",    desc:"Suave y elástico, ideal para fundir",         emoji:"🧀", img:"images/queso-mozzarela.png" },
