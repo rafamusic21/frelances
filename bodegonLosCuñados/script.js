@@ -345,7 +345,7 @@ function closeLightboxOutside(e){ if(e.target.id==="lightboxOverlay") closeLight
 /* ---------- GUARDAR CONTACTO ---------- */
 function saveContact(e) {
   e.preventDefault();
-  const vcard=["BEGIN:VCARD","VERSION:3.0","FN:Bodegon Los Cunados","ORG:Bodegon Los Cunados","TITLE:Tu bodegon de confianza","TEL;TYPE=CELL,VOICE:+58XXXXXXXXXX","NOTE:Tu bodegon de confianza","END:VCARD"].join("\r\n");
+  const vcard=["BEGIN:VCARD","VERSION:3.0","FN:Bodegon Los Cunados","ORG:Bodegon Los Cunados","TITLE:Tu bodegon de confianza","TEL;TYPE=CELL,VOICE:+584247491899","NOTE:Tu bodegon de confianza","END:VCARD"].join("\r\n");
   const a=document.createElement("a");
   a.href="data:text/vcard;charset=utf-8,"+encodeURIComponent(vcard);
   a.download="BodegonLosCunados.vcf";
