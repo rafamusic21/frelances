@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Vaquita Apureña</title>
+<title>Bodegón Los Cuñados</title>
 <link rel="stylesheet" href="styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -16,18 +16,18 @@
 
   <div class="logo-wrap">
     <div class="logo">
-      <img src="images/vaquita.jpg" alt="Mi Vaquita Apureña" onerror="this.style.display='none';this.parentElement.innerHTML='🐄'">
+      <img src="images/bodegon.png" alt="Bodegón Los Cuñados" onerror="this.style.display='none';this.parentElement.innerHTML='🛒'">
     </div>
-    <div class="logo-badge">🧀</div>
+    <div class="logo-badge">🛒</div>
   </div>
 
-  <h1>Mi Vaquita Apureña</h1>
-  <p class="subtitle">Quesos artesanales del llano venezolano</p>
+  <h1>Bodegón Los Cuñados</h1>
+  <p class="subtitle">Tu bodegón de confianza</p>
 
   <div class="socials">
-    <a href="tel:+584125478673" title="Llamar"><i class="fa-solid fa-phone"></i></a>
-    <a href="https://wa.me/584125478673" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="https://www.instagram.com/mivaquitaapurena2021" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="tel:+58XXXXXXXXXX" title="Llamar"><i class="fa-solid fa-phone"></i></a>
+    <a href="https://wa.me/58XXXXXXXXXX" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
     <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
   </div>
 
@@ -39,93 +39,220 @@
     <i class="fa-solid fa-location-dot"></i> Ubicación
   </a>
 
-  <a class="link-btn btn-instagram" href="https://www.instagram.com/mivaquitaapurena2021" target="_blank">
+  <a class="link-btn btn-instagram" href="https://www.instagram.com/" target="_blank">
     <i class="fa-brands fa-instagram"></i> Instagram
   </a>
 
-  <!-- Catálogo carrusel -->
-  <div class="catalog">
-    <h2><i class="fa-solid fa-cheese"></i> Catálogo</h2>
-    <div class="carousel">
-      <div class="carousel-track" id="track">
+  <!-- ===== BOTÓN VER TODOS LOS PRODUCTOS ===== -->
+  <button class="link-btn btn-productos" onclick="openGrid()">
+    <i class="fa-solid fa-store"></i> Ver todos los productos
+  </button>
 
+  <!-- ===== LÁCTEOS ===== -->
+  <div class="catalog">
+    <h2><i class="fa-solid fa-cow"></i> Lácteos</h2>
+    <div class="carousel">
+      <div class="carousel-track" id="track-lacteos">
         <div class="product">
-          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Queso Mozzarela','Suave, elástico y perfecto para fundir','🧀')">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Queso Mozzarela','Suave y elástico, ideal para fundir','🧀')">
             <img src="images/queso-mozzarela.png" alt="Queso Mozzarela" onerror="this.style.display='none'">
           </div>
-          <h3>Queso Mozzarela</h3>
-          <p>Suave, elástico y perfecto para fundir</p>
+          <h3>Queso Mozzarela</h3><p>Suave y elástico, ideal para fundir</p>
         </div>
-
         <div class="product">
-          <div class="product-img-box" onclick="openLightbox('images/quese-cheddar.png','Queso Cheddar','Intenso, cremoso y lleno de sabor','🧀')">
-            <img src="images/quese-cheddar.png" alt="Queso Cheddar" onerror="this.style.display='none'">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Queso Cheddar','Intenso y cremoso, lleno de sabor','🧀')">
+            <img src="images/queso-mozzarela.png" alt="Queso Cheddar" onerror="this.style.display='none'">
           </div>
-          <h3>Queso Cheddar</h3>
-          <p>Intenso, cremoso y lleno de sabor</p>
+          <h3>Queso Cheddar</h3><p>Intenso y cremoso, lleno de sabor</p>
         </div>
-
         <div class="product">
-          <div class="product-img-box" onclick="openLightbox('images/facil-mozzarella.png','Facilitas Mozzarela','Práctica y deliciosa en cada porción','🫙')">
-            <img src="images/facil-mozzarella.png" alt="Facilitas Mozzarela" onerror="this.style.display='none'">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Mantequilla','Cremosa y natural, hecha con leche fresca','🧈')">
+            <img src="images/queso-mozzarela.png" alt="Mantequilla" onerror="this.style.display='none'">
           </div>
-          <h3>Facilitas Mozzarela</h3>
-          <p>Práctica y deliciosa en cada porción</p>
+          <h3>Mantequilla</h3><p>Cremosa y natural, hecha con leche fresca</p>
         </div>
-
         <div class="product">
-          <div class="product-img-box" onclick="openLightbox('images/cheddar.png','Facilitas Cheddar','El sabor cheddar en formato fácil','🫙')">
-            <img src="images/cheddar.png" alt="Facilitas Cheddar" onerror="this.style.display='none'">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Yogurt Natural','Fresco y nutritivo, sin azúcar añadida','🥛')">
+            <img src="images/queso-mozzarela.png" alt="Yogurt Natural" onerror="this.style.display='none'">
           </div>
-          <h3>Facilitas Cheddar</h3>
-          <p>El sabor cheddar en formato fácil</p>
+          <h3>Yogurt Natural</h3><p>Fresco y nutritivo, sin azúcar añadida</p>
         </div>
-
         <div class="product">
-          <div class="product-img-box" onclick="openLightbox('images/fresa.png','GR Yogurt de Fresa','Fresco, natural y con sabor a fresa','🍓')">
-            <img src="images/fresa.png" alt="GR Yogurt de Fresa" onerror="this.style.display='none'">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Leche Pasteurizada','Fresca y nutritiva, directo del campo','🥛')">
+            <img src="images/queso-mozzarela.png" alt="Leche Pasteurizada" onerror="this.style.display='none'">
           </div>
-          <h3>GR Yogurt de Fresa</h3>
-          <p>Fresco, natural y con sabor a fresa</p>
+          <h3>Leche Pasteurizada</h3><p>Fresca y nutritiva, directo del campo</p>
         </div>
-
         <div class="product">
-          <div class="product-img-box" onclick="openLightbox('images/durazno.png','GR Yogurt de Durazno','Cremoso y aromático con durazno natural','🍑')">
-            <img src="images/durazno.png" alt="GR Yogurt de Durazno" onerror="this.style.display='none'">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Queso Blanco','Artesanal, firme y con sabor tradicional','🧀')">
+            <img src="images/queso-mozzarela.png" alt="Queso Blanco" onerror="this.style.display='none'">
           </div>
-          <h3>GR Yogurt de Durazno</h3>
-          <p>Cremoso y aromático con durazno natural</p>
+          <h3>Queso Blanco</h3><p>Artesanal, firme y con sabor tradicional</p>
         </div>
-
       </div>
     </div>
     <div class="carousel-buttons">
-      <button onclick="prev()"><i class="fa-solid fa-arrow-left"></i></button>
-      <div class="carousel-dots" id="dots"></div>
-      <button onclick="next()"><i class="fa-solid fa-arrow-right"></i></button>
+      <button onclick="prevSlide('lacteos')"><i class="fa-solid fa-arrow-left"></i></button>
+      <div class="carousel-dots" id="dots-lacteos"></div>
+      <button onclick="nextSlide('lacteos')"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
   </div>
+
+  <!-- ===== EMBUTIDOS ===== -->
+  <div class="catalog">
+    <h2><i class="fa-solid fa-drumstick-bite"></i> Embutidos</h2>
+    <div class="carousel">
+      <div class="carousel-track" id="track-embutidos">
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Mortadela','Clásica y sabrosa, perfecta para sándwiches','🥩')">
+            <img src="images/queso-mozzarela.png" alt="Mortadela" onerror="this.style.display='none'">
+          </div>
+          <h3>Mortadela</h3><p>Clásica y sabrosa, perfecta para sándwiches</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Jamón de Pierna','Jugoso y tierno, de calidad premium','🍖')">
+            <img src="images/queso-mozzarela.png" alt="Jamón de Pierna" onerror="this.style.display='none'">
+          </div>
+          <h3>Jamón de Pierna</h3><p>Jugoso y tierno, de calidad premium</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Salchichón','Firme y aromático, con especias selectas','🌭')">
+            <img src="images/queso-mozzarela.png" alt="Salchichón" onerror="this.style.display='none'">
+          </div>
+          <h3>Salchichón</h3><p>Firme y aromático, con especias selectas</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Salchicha de Res','Tierna y jugosa, ideal para la parrilla','🌭')">
+            <img src="images/queso-mozzarela.png" alt="Salchicha de Res" onerror="this.style.display='none'">
+          </div>
+          <h3>Salchicha de Res</h3><p>Tierna y jugosa, ideal para la parrilla</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Pepperoni','Picante y sabroso, perfecto para pizzas','🍕')">
+            <img src="images/queso-mozzarela.png" alt="Pepperoni" onerror="this.style.display='none'">
+          </div>
+          <h3>Pepperoni</h3><p>Picante y sabroso, perfecto para pizzas</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Tocineta','Ahumada y crujiente, irresistible','🥓')">
+            <img src="images/queso-mozzarela.png" alt="Tocineta" onerror="this.style.display='none'">
+          </div>
+          <h3>Tocineta</h3><p>Ahumada y crujiente, irresistible</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-buttons">
+      <button onclick="prevSlide('embutidos')"><i class="fa-solid fa-arrow-left"></i></button>
+      <div class="carousel-dots" id="dots-embutidos"></div>
+      <button onclick="nextSlide('embutidos')"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- ===== VÍVERES ===== -->
+  <div class="catalog">
+    <h2><i class="fa-solid fa-basket-shopping"></i> Víveres</h2>
+    <div class="carousel">
+      <div class="carousel-track" id="track-viveres">
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Harina de Maíz','Harina precocida, lista para tus arepas','🌽')">
+            <img src="images/queso-mozzarela.png" alt="Harina de Maíz" onerror="this.style.display='none'">
+          </div>
+          <h3>Harina de Maíz</h3><p>Harina precocida, lista para tus arepas</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Arroz','Grano largo, suelto y de primera calidad','🍚')">
+            <img src="images/queso-mozzarela.png" alt="Arroz" onerror="this.style.display='none'">
+          </div>
+          <h3>Arroz</h3><p>Grano largo, suelto y de primera calidad</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Pasta','Variedad de cortes, al dente perfecta','🍝')">
+            <img src="images/queso-mozzarela.png" alt="Pasta" onerror="this.style.display='none'">
+          </div>
+          <h3>Pasta</h3><p>Variedad de cortes, al dente perfecta</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Aceite Vegetal','Suave y ligero para todas tus recetas','🫙')">
+            <img src="images/queso-mozzarela.png" alt="Aceite Vegetal" onerror="this.style.display='none'">
+          </div>
+          <h3>Aceite Vegetal</h3><p>Suave y ligero para todas tus recetas</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Caraotas Negras','Selectas y tiernas, sabor venezolano','🫘')">
+            <img src="images/queso-mozzarela.png" alt="Caraotas Negras" onerror="this.style.display='none'">
+          </div>
+          <h3>Caraotas Negras</h3><p>Selectas y tiernas, sabor venezolano</p>
+        </div>
+        <div class="product">
+          <div class="product-img-box" onclick="openLightbox('images/queso-mozzarela.png','Azúcar','Refinada y blanca, para tus dulces','🍬')">
+            <img src="images/queso-mozzarela.png" alt="Azúcar" onerror="this.style.display='none'">
+          </div>
+          <h3>Azúcar</h3><p>Refinada y blanca, para tus dulces</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-buttons">
+      <button onclick="prevSlide('viveres')"><i class="fa-solid fa-arrow-left"></i></button>
+      <div class="carousel-dots" id="dots-viveres"></div>
+      <button onclick="nextSlide('viveres')"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <button class="link-btn btn-whatsapp" onclick="openShop()" style="margin-top:8px;">
+    <i class="fa-brands fa-whatsapp"></i> Hacer pedido
+  </button>
 
   <a class="save" href="#" onclick="saveContact(event)">
     <i class="fa-solid fa-address-card"></i> Guardar contacto
   </a>
 
-  <footer>Mi Vaquita Apureña © 2025 — Apure, Venezuela 🇻🇪</footer>
+  <footer>Bodegón Los Cuñados © 2025 — Venezuela 🇻🇪</footer>
 
+</div>
+
+<!-- GRID MODAL -->
+<div class="grid-overlay" id="gridOverlay">
+  <div class="grid-header">
+    <h2><i class="fa-solid fa-store"></i> Todos los Productos</h2>
+    <button class="grid-close-btn" onclick="closeGrid()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="grid-tabs">
+    <button class="grid-tab active" onclick="filterGrid('todos',this)">Todos</button>
+    <button class="grid-tab" onclick="filterGrid('lacteos',this)">🧀 Lácteos</button>
+    <button class="grid-tab" onclick="filterGrid('embutidos',this)">🥩 Embutidos</button>
+    <button class="grid-tab" onclick="filterGrid('viveres',this)">🛒 Víveres</button>
+  </div>
+  <div class="grid-body">
+    <div class="grid-products" id="gridProducts"></div>
+  </div>
 </div>
 
 <!-- MODAL TIENDA -->
 <div class="shop-overlay" id="shopOverlay" onclick="closeShopOutside(event)">
-  <div class="shop-modal" id="shopModal">
+  <div class="shop-modal" id="shopModal" style="padding:0;">
     <div class="shop-header">
       <h2><i class="fa-solid fa-basket-shopping"></i> Hacer Pedido</h2>
       <button class="shop-close" onclick="closeShop()"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <p class="shop-subtitle">Selecciona los productos que te interesan y consulta por WhatsApp 🧀</p>
+    <p class="shop-subtitle">Selecciona los productos y consulta por WhatsApp 🛒</p>
+
+    <!-- Filtros de categoría -->
+    <div class="shop-filter-tabs">
+      <button class="shop-filter-tab active" onclick="setShopFilter('todos',this)">Todos</button>
+      <button class="shop-filter-tab" onclick="setShopFilter('lacteos',this)">🧀 Lácteos</button>
+      <button class="shop-filter-tab" onclick="setShopFilter('embutidos',this)">🥩 Embutidos</button>
+      <button class="shop-filter-tab" onclick="setShopFilter('viveres',this)">🛒 Víveres</button>
+    </div>
+
     <div class="shop-products" id="shopProducts"></div>
-    <button class="send-order" id="sendBtn" onclick="sendOrder()" disabled>
-      <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
-    </button>
+
+    <!-- Footer fijo: paginación + botón -->
+    <div class="shop-footer">
+      <div class="shop-pagination" id="shopPagination" style="display:none"></div>
+      <button class="send-order" id="sendBtn" onclick="sendOrder()" disabled>
+        <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
+      </button>
+    </div>
   </div>
 </div>
 
