@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glosario de Inglés — Setlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-glow"></div>
+  <svg class="headstock" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+    <path d="M60 8 L98 30 L98 70 Q98 92 78 108 L60 132 L42 108 Q22 92 22 70 L22 30 Z"
+          fill="none" stroke="var(--chrome)" stroke-width="2" opacity="0.85"/>
+    <circle cx="38" cy="34" r="5" fill="none" stroke="var(--magenta)" stroke-width="2"/>
+    <circle cx="82" cy="34" r="5" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+    <circle cx="34" cy="58" r="5" fill="none" stroke="var(--magenta)" stroke-width="2"/>
+    <circle cx="86" cy="58" r="5" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+    <circle cx="38" cy="82" r="5" fill="none" stroke="var(--magenta)" stroke-width="2"/>
+    <circle cx="82" cy="82" r="5" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+    <line x1="60" y1="8" x2="60" y2="132" stroke="var(--amber)" stroke-width="1.5" opacity="0.6"/>
+  </svg>
+  <div class="eyebrow">Setlist de vocabulario</div>
+  <h1 class="title">GLOSARIO DE INGLÉS</h1>
+  <p class="subtitle">Cada clase es una canción del repertorio. Mínimo 5 palabras por clase, afinadas y listas para tocar.</p>
+  <div class="strings">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="add-class">
+    <div class="field" style="max-width:140px;">
+      <label for="newClassNum">N° de clase</label>
+      <input id="newClassNum" type="number" min="1" placeholder="ej. 12">
+    </div>
+    <div class="field">
+      <label for="newClassTitle">Tema (opcional)</label>
+      <input id="newClassTitle" type="text" placeholder="ej. Phrasal verbs">
+    </div>
+    <button class="btn" id="addClassBtn">
+      <svg viewBox="0 0 24 24" fill="var(--void)"><path d="M12 2 L20 8 L17 22 L7 22 L4 8 Z"/></svg>
+      Agregar clase
+    </button>
+  </div>
+
+  <div class="backup-bar">
+    <button class="btn ghost" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><path d="M4 12v6h16v-6M12 3v11m0 0l-4-4m4 4l4-4"/></svg>
+      Descargar data.json
+    </button>
+    <button class="btn ghost" id="reloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><path d="M4 4v6h6M20 20v-6h-6M4.5 15a8 8 0 0014.5 3M19.5 9A8 8 0 005 6"/></svg>
+      Recargar desde repo
+    </button>
+    <label class="auto-toggle">
+      <input type="checkbox" id="autoDownloadToggle" checked>
+      Descargar automático al guardar
+    </label>
+    <span class="backup-hint" id="fileStatus"></span>
+  </div>
+
+  <div class="classes" id="classesContainer"></div>
+
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <strong>Sin clases todavía</strong>
+    Agregá tu primera clase arriba para empezar el setlist.
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="dup-overlay" id="dupOverlay">
+  <div class="dup-card">
+    <svg class="dup-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2 C6 2 3 7 3 12 C3 17 8 22 12 22 C16 22 21 17 21 12 C21 7 18 2 12 2 Z"
+            fill="none" stroke="var(--amber)" stroke-width="2"/>
+      <path d="M12 8v5" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="12" cy="16" r="1" fill="var(--amber)"/>
+    </svg>
+    <div class="dup-title">¡Esa ya está en tu setlist!</div>
+    <div class="dup-word" id="dupWord"></div>
+    <div class="dup-sub" id="dupSub"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+{
+    "classes": [
+      {
+        "id": "c1784302749441",
+        "number": 1,
+        "title": "clase 1",
+        "words": [
+          {
+            "id": "w17843027706089dc1b39eb50378",
+            "en": "truck",
+            "es": "camion"
+          },
+          {
+            "id": "w17843028115612fbccc396c0b1",
+            "en": "orange",
+            "es": "naranja"
+          },
+          {
+            "id": "w1784302829790ec3c5bcd96ad98",
+            "en": "pared",
+            "es": "wall"
+          },
+          {
+            "id": "w1784302836608eb5c4b4b743a28",
+            "en": "table",
+            "es": "mesa"
+          },
+          {
+            "id": "w17843031213917800b18a082568",
+            "en": "fork",
+            "es": "tenedor"
+          }
+        ]
+      },
+      {
+        "id": "c1784301414137",
+        "number": 2,
+        "title": "to be",
+        "words": [
+          {
+            "id": "w1784301422982b879fd0b053fc",
+            "en": "cat",
+            "es": "gato"
+          },
+          {
+            "id": "w17843014361490c0f04bab60e88",
+            "en": "fluffy",
+            "es": "esponjoso"
+          },
+          {
+            "id": "w1784301442982cf8831896a16e",
+            "en": "carefull",
+            "es": "cuidadoso"
+          },
+          {
+            "id": "w178430150531706cffb71df436",
+            "en": "friendly",
+            "es": "amigable"
+          },
+          {
+            "id": "w1784301517415fa2614d59a3068",
+            "en": "teacher",
+            "es": "maestro"
+          }
+        ]
+      },
+      {
+        "id": "c1784301544783",
+        "number": 3,
+        "title": "saludos",
+        "words": [
+          {
+            "id": "w17843015760322c58f93a50678",
+            "en": "tomorrow",
+            "es": "mañana"
+          },
+          {
+            "id": "w1784301599115a13ec3fd1549f",
+            "en": "well",
+            "es": "bien"
+          },
+          {
+            "id": "w17843016357831563b7a25ab998",
+            "en": "later",
+            "es": "mas tarde"
+          },
+          {
+            "id": "w178430167908172404d18b4db3",
+            "en": "everything",
+            "es": "todo"
+          },
+          {
+            "id": "w1784301735988704437357fba4",
+            "en": "helmet",
+            "es": "casco"
+          }
+        ]
+      },
+      {
+        "id": "c1784302277460",
+        "number": 4,
+        "title": "this, that,these,those",
+        "words": [
+          {
+            "id": "w17843023330951a244ee56528e8",
+            "en": "chair",
+            "es": "silla"
+          },
+          {
+            "id": "w178430234684402670f60e9625",
+            "en": "books",
+            "es": "libros"
+          },
+          {
+            "id": "w17843023612425d6e703ac07728",
+            "en": "wild",
+            "es": "salvage"
+          },
+          {
+            "id": "w178430237214369aa9413258f1",
+            "en": "animals",
+            "es": "animales"
+          },
+          {
+            "id": "w1784302393761a1c56ba731a18",
+            "en": "blue",
+            "es": "azul"
+          }
+        ]
+      },
+      {
+        "id": "c1784302418893",
+        "number": 5,
+        "title": "in,on,at",
+        "words": [
+          {
+            "id": "w178430243169372ef1c6e6b908",
+            "en": "year",
+            "es": "año"
+          },
+          {
+            "id": "w1784302445294bd0760b403b768",
+            "en": "season",
+            "es": "temporada"
+          },
+          {
+            "id": "w1784302462293845dc61e28e42",
+            "en": "city",
+            "es": "ciudad"
+          },
+          {
+            "id": "w17843025290607144240acf862",
+            "en": "house",
+            "es": "casa"
+          },
+          {
+            "id": "w1784302564411feb731b73da3d",
+            "en": "floor",
+            "es": "piso"
+          }
+        ]
+      },
+      {
+        "id": "c1784302609441",
+        "number": 6,
+        "title": "direciones",
+        "words": [
+          {
+            "id": "w17843026336918afbd3ceecefd8",
+            "en": "turn",
+            "es": "girar"
+          },
+          {
+            "id": "w1784302643193a921f3210ec06",
+            "en": "left",
+            "es": "izquierda"
+          },
+          {
+            "id": "w17843026637080562699a2ecf18",
+            "en": "right",
+            "es": "derecha"
+          },
+          {
+            "id": "w1784302679909eab228b0da1ac8",
+            "en": "block",
+            "es": "cuadra"
+          },
+          {
+            "id": "w1784302711675b118b894783d58",
+            "en": "walk",
+            "es": "caminar"
+          }
+        ]
+      }
+    ]
+  }
