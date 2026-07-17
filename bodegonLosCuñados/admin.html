@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel del dueño — Bodegón Los Cuñados</title>
+<link rel="stylesheet" href="admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ===== PANTALLA DE ACCESO ===== -->
+<div class="login-gate" id="loginGate">
+  <h1><i class="fa-solid fa-lock"></i> Panel del dueño</h1>
+  <div class="card">
+    <div class="field">
+      <label for="loginPass">Contraseña</label>
+      <input type="password" id="loginPass" placeholder="••••••••">
+    </div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="tryLogin()">Entrar</button>
+    <div class="login-error" id="loginError">Contraseña incorrecta.</div>
+    <p class="hint">
+      Esta contraseña solo evita que alguien que no conoce el enlace entre por curiosidad.
+      No es una protección real de seguridad: cualquiera con acceso al código puede verla.
+      No compartas este enlace públicamente ni lo publiques en redes.
+    </p>
+  </div>
+</div>
+
+<!-- ===== PANEL PRINCIPAL (oculto hasta iniciar sesión) ===== -->
+<div class="admin-wrap" id="adminPanel" style="display:none">
+
+  <div class="admin-header">
+    <div>
+      <h1>Panel del dueño</h1>
+      <div class="sub">Bodegón Los Cuñados <span id="unsavedIndicator" style="display:none"><span class="unsaved-dot"></span> cambios sin publicar</span></div>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <a class="btn btn-outline" href="index.html" target="_blank"><i class="fa-solid fa-eye"></i> Ver sitio</a>
+      <button class="btn btn-outline" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
+    </div>
+  </div>
+
+  <div class="publish-banner">
+    <p>
+      Esta página es un editor. Los cambios se ven aquí mismo mientras trabajas, pero
+      <strong>tus clientes no los verán hasta que publiques</strong>: descarga el archivo
+      actualizado con el botón de abajo y súbelo a tu hosting reemplazando el archivo
+      <strong>data.json</strong> (misma carpeta donde está <strong>index.html</strong>).
+    </p>
+    <button class="btn btn-accent" onclick="downloadData()"><i class="fa-solid fa-cloud-arrow-down"></i> Descargar data.json actualizado</button>
+  </div>
+
+  <!-- ===== LOGO ===== -->
+  <div class="card">
+    <h2><i class="fa-solid fa-image"></i> Logo del negocio</h2>
+    <div class="img-upload">
+      <div class="img-preview" id="logoPreview">🛒</div>
+      <div style="flex:1; min-width:200px;">
+        <input type="file" accept="image/*" id="logoInput" onchange="handleLogoUpload(event)">
+        <div class="hint">Se recomienda una imagen cuadrada. Se ajustará automáticamente.</div>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="removeLogo()"><i class="fa-solid fa-trash"></i> Quitar</button>
+    </div>
+  </div>
+
+  <!-- ===== CATEGORÍAS ===== -->
+  <div class="card">
+    <h2><i class="fa-solid fa-layer-group"></i> Categorías <span class="count" id="catCount">0</span></h2>
+    <div id="categoryList"></div>
+
+    <div class="category-group-label">Agregar categoría nueva</div>
+    <div class="form-grid">
+      <div class="field">
+        <label>Nombre</label>
+        <input type="text" id="newCatLabel" placeholder="Ej: Bebidas">
+      </div>
+      <div class="field">
+        <label>Ícono</label>
+        <select id="newCatIcon"></select>
+      </div>
+      <div class="field full">
+        <label>Emoji para las pestañas</label>
+        <input type="text" id="newCatEmoji" placeholder="🥤" maxlength="4">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="addCategory()"><i class="fa-solid fa-plus"></i> Agregar categoría</button>
+  </div>
+
+  <!-- ===== PRODUCTOS ===== -->
+  <div class="card">
+    <h2><i class="fa-solid fa-boxes-stacked"></i> Productos <span class="count" id="prodCount">0</span></h2>
+    <div id="productList"></div>
+
+    <div class="category-group-label">Agregar producto nuevo</div>
+    <div class="form-grid">
+      <div class="field">
+        <label>Nombre</label>
+        <input type="text" id="newProdName" placeholder="Ej: Café Molido">
+      </div>
+      <div class="field">
+        <label>Categoría</label>
+        <select id="newProdCat"></select>
+      </div>
+      <div class="field full">
+        <label>Descripción corta</label>
+        <input type="text" id="newProdDesc" placeholder="Ej: Aroma intenso, tueste medio">
+      </div>
+      <div class="field">
+        <label>Emoji (se usa si no hay foto)</label>
+        <input type="text" id="newProdEmoji" placeholder="☕" maxlength="4">
+      </div>
+      <div class="field">
+        <label>Foto del producto</label>
+        <input type="file" accept="image/*" id="newProdImg">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="addProduct()"><i class="fa-solid fa-plus"></i> Agregar producto</button>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>
