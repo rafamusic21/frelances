@@ -404,5 +404,5 @@
        buildDots(cat.id); updateCarousel(cat.id);
        setInterval(()=>nextSlide(cat.id),4500+Math.random()*500);
      });
-     buildCategoryTabs();
+      buildCategoryTabs();
    });

@@ -204,7 +204,7 @@
     margin: 16px 0 8px;
   }
   
-  .empty-msg { color: var(--muted); font-size: 0.9rem; padding: 12px 0; }
+   .empty-msg { color: var(--muted); font-size: 0.9rem; padding: 12px 0; }
   
   /* --- login gate --- */
   .login-gate {

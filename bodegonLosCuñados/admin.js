@@ -5,7 +5,7 @@
 
 /* ---------- CONFIGURACIÓN ---------- */
 // Cambia esta contraseña por la que quieras usar.
-const ADMIN_PASSWORD = "cunados2025";
+ const ADMIN_PASSWORD = "cunados2025";
 
 // Íconos disponibles para elegir en el formulario de categorías.
 const ICON_OPTIONS = [
