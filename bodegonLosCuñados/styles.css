@@ -115,7 +115,7 @@ body {
   gap: 16px;
   flex-wrap: wrap;
 }
-.publish-banner p { margin: 0; flex: 1; min-width: 220px; font-size: 0.9rem; line-height: 1.5; }
+.publish-banner p { margin: 0; flex: 1 1 220px; min-width: 0; font-size: 0.9rem; line-height: 1.5; }
 .publish-banner strong { color: var(--accent); }
 
 .unsaved-dot {
