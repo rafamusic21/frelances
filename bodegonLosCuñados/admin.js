@@ -357,11 +357,13 @@ function editProduct(id) {
   ).join("");
 
   document.getElementById("editProductModal").style.display = "flex";
+  document.body.classList.add("modal-open");
 }
 
 function closeEditProductModal() {
   editingProductId = null;
   document.getElementById("editProductModal").style.display = "none";
+  document.body.classList.remove("modal-open");
 }
 
 function saveEditProduct() {
