@@ -5,7 +5,7 @@
 
 /* ---------- CONFIGURACIÓN ---------- */
 // Cambia esta contraseña por la que quieras usar.
- const ADMIN_PASSWORD = "cunados2025";
+const ADMIN_PASSWORD = "cunados2025";
 
 // Íconos disponibles para elegir en el formulario de categorías.
 const ICON_OPTIONS = [
@@ -335,29 +335,52 @@ async function addProduct() {
   showToast("Producto agregado (recuerda publicar).");
 }
 
+let editingProductId = null;
+
 function editProduct(id) {
   const p = data.products.find(p => p.id === id);
   if (!p) return;
-  const newName = prompt("Nombre del producto:", p.name);
-  if (newName === null) return;
-  const newDesc = prompt("Descripción corta:", p.desc);
-  if (newDesc === null) return;
-  const newEmoji = prompt("Emoji (se usa si no hay foto):", p.emoji);
-  if (newEmoji === null) return;
 
-  const catOptions = data.categories.map(c => `${c.id} = ${c.label}`).join("\n");
-  const newCat = prompt(`Categoría (escribe el id exacto):\n${catOptions}`, p.cat);
-  if (newCat === null) return;
-  if (!data.categories.some(c => c.id === newCat)) {
-    alert("Ese id de categoría no existe. No se cambió la categoría.");
-  } else {
-    p.cat = newCat;
+  if (data.categories.length === 0) {
+    alert("Todavía no hay categorías creadas.");
+    return;
   }
 
-  p.name = newName.trim() || p.name;
-  p.desc = newDesc.trim() || p.desc;
-  p.emoji = newEmoji.trim() || p.emoji;
+  editingProductId = id;
+  document.getElementById("editProdName").value = p.name;
+  document.getElementById("editProdDesc").value = p.desc;
+  document.getElementById("editProdEmoji").value = p.emoji;
 
+  const sel = document.getElementById("editProdCat");
+  sel.innerHTML = data.categories.map(c =>
+    `<option value="${c.id}" ${c.id === p.cat ? "selected" : ""}>${c.emojiTab} ${escapeHtml(c.label)}</option>`
+  ).join("");
+
+  document.getElementById("editProductModal").style.display = "flex";
+}
+
+function closeEditProductModal() {
+  editingProductId = null;
+  document.getElementById("editProductModal").style.display = "none";
+}
+
+function saveEditProduct() {
+  const p = data.products.find(p => p.id === editingProductId);
+  if (!p) return;
+
+  const newName  = document.getElementById("editProdName").value.trim();
+  const newDesc  = document.getElementById("editProdDesc").value.trim();
+  const newEmoji = document.getElementById("editProdEmoji").value.trim();
+  const newCat   = document.getElementById("editProdCat").value;
+
+  if (!newName) { alert("El nombre no puede estar vacío."); return; }
+
+  p.name  = newName;
+  p.desc  = newDesc || p.desc;
+  p.emoji = newEmoji || p.emoji;
+  p.cat   = newCat;
+
+  closeEditProductModal();
   renderProductList();
   saveDraft();
   showToast("Producto actualizado (recuerda publicar).");

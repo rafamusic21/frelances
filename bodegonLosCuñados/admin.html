@@ -122,6 +122,33 @@
 
 </div>
 
+<!-- ===== MODAL: EDITAR PRODUCTO ===== -->
+<div class="modal-overlay" id="editProductModal" style="display:none" onclick="if(event.target===this) closeEditProductModal()">
+  <div class="modal">
+    <h3><i class="fa-solid fa-pen"></i> Editar producto</h3>
+    <div class="field">
+      <label>Nombre</label>
+      <input type="text" id="editProdName">
+    </div>
+    <div class="field">
+      <label>Categoría</label>
+      <select id="editProdCat"></select>
+    </div>
+    <div class="field">
+      <label>Descripción corta</label>
+      <input type="text" id="editProdDesc">
+    </div>
+    <div class="field">
+      <label>Emoji (se usa si no hay foto)</label>
+      <input type="text" id="editProdEmoji" maxlength="4">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeEditProductModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveEditProduct()"><i class="fa-solid fa-check"></i> Guardar cambios</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script src="admin.js"></script>
