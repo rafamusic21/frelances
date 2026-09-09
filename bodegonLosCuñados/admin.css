@@ -224,9 +224,12 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--a
   inset: 0;
   background: rgba(0,14,43,0.55);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 16px;
+  padding-top: max(16px, 5vh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   z-index: 1000;
 }
 .modal {
@@ -236,8 +239,7 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--a
   padding: 24px;
   width: 100%;
   max-width: 420px;
-  max-height: 90vh;
-  overflow-y: auto;
+  margin-bottom: 16px;
 }
 .modal h3 {
   margin-top: 0;
@@ -254,6 +256,31 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--a
   margin-top: 8px;
   border-top: 1px solid #eee;
   padding-top: 16px;
+}
+.modal input[type="text"],
+.modal select {
+  font-size: 16px; /* evita el auto-zoom de Safari en iPhone al enfocar */
+}
+body.modal-open { overflow: hidden; }
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    align-items: flex-end;
+    justify-content: stretch;
+    padding: 0;
+    padding-top: 0;
+  }
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 0;
+    padding: 20px 18px calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+  .modal-actions { flex-direction: column-reverse; }
+  .modal-actions .btn { width: 100%; justify-content: center; }
 }
 
 .toast {
