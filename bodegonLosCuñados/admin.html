@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Panel del dueño — Bodegón Los Cuñados</title>
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="admin.css?v=3">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -35,7 +35,7 @@
   <div class="admin-header">
     <div>
       <h1>Panel del dueño</h1>
-      <div class="sub">Bodegón Los Cuñados <span id="unsavedIndicator" style="display:none"><span class="unsaved-dot"></span> cambios sin publicar</span></div>
+      <div class="sub">Bodegón Los Cuñados <span id="unsavedIndicator" style="display:none"><span class="unsaved-dot"></span> cambios sin publicar · <a href="#" onclick="discardDraft();return false;" style="color:var(--danger)">descartar</a></span></div>
     </div>
     <div style="display:flex; gap:8px; flex-wrap:wrap;">
       <a class="btn btn-outline" href="index.html" target="_blank"><i class="fa-solid fa-eye"></i> Ver sitio</a>
@@ -151,6 +151,6 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="admin.js"></script>
+<script src="admin.js?v=3"></script>
 </body>
 </html>

@@ -76,9 +76,10 @@ async function initAdmin() {
     console.warn("No se pudo leer data.json (¿estás abriendo el archivo directamente sin subirlo a un hosting?)", e);
   }
 
-  if (draft && confirm("Se encontró un borrador con cambios sin publicar de una sesión anterior. ¿Deseas continuarlo? (Cancelar = empezar desde el data.json publicado)")) {
+  if (draft) {
     data = draft;
     setDirty(true);
+    showToast("Continuando con tus cambios sin publicar.");
   } else if (fetched) {
     data = fetched;
     setDirty(false);
@@ -88,6 +89,12 @@ async function initAdmin() {
   }
 
   renderAll();
+}
+
+function discardDraft() {
+  if (!confirm("¿Descartar tus cambios sin publicar y volver a la última versión publicada (data.json)?")) return;
+  localStorage.removeItem(DRAFT_KEY);
+  location.reload();
 }
 
 function setDirty(val) {
