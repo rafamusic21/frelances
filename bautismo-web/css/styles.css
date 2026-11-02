@@ -19,7 +19,7 @@
   --muted:#BFC5EC; --dot:rgba(255,255,255,.06); --verse:#283070; color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--bg);color:var(--ink);
   font-family:"Baloo 2",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -207,13 +207,13 @@ p{margin:0 0 .6em}
 .center{text-align:center}
 
 /* cap 6: público */
-.crowd{height:210px;background:linear-gradient(#FFF2C2,#FFE08A)}
-.crowd .stage{position:absolute;left:50%;bottom:0;width:110px;translate:-50% 0;z-index:1}
+.crowd{height:240px;background:linear-gradient(#FFF2C2,#FFE08A)}
+.crowd .stage{position:absolute;left:56%;bottom:0;width:100px;translate:-50% 0;z-index:1}
 .crowd .heads{position:absolute;left:-10px;right:-10px;bottom:-26px;display:flex;justify-content:space-between;z-index:2}
 .crowd .heads > div{width:16%}
 .crowd .heads > div:nth-child(odd){translate:0 12px}
 .crowd .amen{position:absolute;z-index:3;font-size:.85rem;padding:.3em .7em}
-.amen.a1{left:8px;top:14px;rotate:-6deg}.amen.a2{right:8px;top:22px;rotate:5deg}.amen.a3{left:34%;top:64px;rotate:-2deg}
+.amen.a1{left:8px;top:14px;rotate:-6deg}.amen.a2{right:8px;top:22px;rotate:5deg}.amen.a3{left:8px;top:74px;max-width:34%;rotate:-3deg}
 .clap{animation:clap .5s ease-in-out infinite alternate}
 @keyframes clap{to{transform:translateY(-5px)}}
 
@@ -263,3 +263,20 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px
   .dove{transform:none}
   .rays{opacity:1}
 }
+
+/* ---------- barra superior con logos (siempre visible) ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:31;background:#1B1F3B}
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:30;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  height:60px;padding:0 14px;background:#1B1F3B;border-bottom:4px solid var(--sun);
+}
+.topbar .logo{display:flex;align-items:center;height:100%;flex:1 1 0;min-width:0}
+.topbar .logo:last-child{justify-content:flex-end}
+.topbar img{display:block;height:40px;width:auto;max-width:96px;object-fit:contain}
+.topbar-title{flex:none;font-family:"Bangers","Impact",sans-serif;letter-spacing:.06em;font-size:1.3rem;color:#fff;
+  opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.topbar.scrolled .topbar-title{opacity:1;transform:none}
+.logo-ph{display:grid;place-items:center;width:40px;height:40px;border:2px dashed rgba(255,255,255,.6);border-radius:50%;
+  color:#fff;font-size:.65rem;font-weight:800;line-height:1}
+@media (min-width:640px){ .topbar{height:68px;padding:0 24px} .topbar img{height:46px;max-width:120px} }
