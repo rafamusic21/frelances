@@ -74,6 +74,7 @@
     jesusCalm: () => jesus(false),
     youth: () => person({shirt:'#3DDC97'}),
     youthWhite: () => person({shirt:'#FFFFFF', skin:'#C98B5E', hair:'#2A1A12'}),
+    youthCheer: () => person({shirt:'#FFFFFF', skin:'#C98B5E', hair:'#2A1A12'}),
     eunuco: () => person({shirt:'#9B6BFF', skin:'#6E4630', hair:'#120C0A', style:'wrap'}),
     felipe: () => person({shirt:'#FF8A3D', skin:'#E9B98C', hair:'#5A3A22', beard:true}),
     dove: () => dove,
@@ -83,6 +84,19 @@
   document.querySelectorAll('[data-art]').forEach(el => {
     const fn = ART[el.dataset.art]; if (fn) el.innerHTML = fn();
   });
+
+  // ---------- Barra superior: logos ----------
+  // Si todavía no subes un logo, se muestra un círculo de reemplazo.
+  document.querySelectorAll('.topbar img').forEach(img => {
+    const fallback = () => { const ph = document.createElement('span'); ph.className = 'logo-ph'; ph.textContent = 'Logo'; img.replaceWith(ph); };
+    if (img.complete && img.naturalWidth === 0) fallback(); else img.addEventListener('error', fallback);
+  });
+  // El título "El bautismo" aparece en la barra al pasar la portada.
+  const topbar = document.querySelector('.topbar');
+  const cover = document.getElementById('inicio');
+  if (topbar && cover && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => topbar.classList.toggle('scrolled', !e.isIntersecting), {threshold: .35}).observe(cover);
+  }
 
   // ---------- Viñetas que aparecen al bajar ----------
   const items = document.querySelectorAll('.reveal');
