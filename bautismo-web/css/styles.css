@@ -280,3 +280,34 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .logo-ph{display:grid;place-items:center;width:40px;height:40px;border:2px dashed rgba(255,255,255,.6);border-radius:50%;
   color:#fff;font-size:.65rem;font-weight:800;line-height:1}
 @media (min-width:640px){ .topbar{height:68px;padding:0 24px} .topbar img{height:46px;max-width:120px} }
+/* ---------- puntos de semitono (halftone) en las viñetas ---------- */
+:root{ --ht-paper: rgba(27,31,59,.075) }
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ --ht-paper: rgba(255,255,255,.06) } }
+:root[data-theme="dark"]{ --ht-paper: rgba(255,255,255,.06) }
+
+.panel{
+  background-image: radial-gradient(var(--ht-paper) 1.5px, transparent 1.8px);
+  background-size: 10px 10px;
+}
+/* los versículos quedan lisos para leerse mejor */
+.verse{ background-image:none }
+
+/* escenas ilustradas: puntos más marcados que se desvanecen hacia el centro */
+.scene::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image: radial-gradient(var(--ht, rgba(59,164,232,.28)) 1.7px, transparent 2px);
+  background-size: 9px 9px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 45%, transparent 25%, #000 85%);
+          mask-image: radial-gradient(ellipse at 50% 45%, transparent 25%, #000 85%);
+}
+.sky   { --ht: rgba(59,164,232,.30) }
+.dusk  { --ht: rgba(232,110,40,.28) }
+.dunk  { --ht: rgba(59,164,232,.26) }
+.crowd { --ht: rgba(230,150,0,.32) }
+/* portada: puntos bajo los rayos */
+.cover{
+  background-color: var(--sun);
+  background-image: radial-gradient(rgba(230,150,0,.38) 2px, transparent 2.3px);
+  background-size: 11px 11px;
+  
+}
